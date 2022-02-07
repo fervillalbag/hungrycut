@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { FaAngleLeft } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
+import useAuth from '@/hooks/useAuth'
 import { LOGIN } from '@/graphql/mutations/user'
 import { useMutation } from '@apollo/client'
 import { UserLoginType } from '@/types/User'
-import useAuth from '@/hooks/useAuth'
 
 const Login: React.FC = () => {
   const router = useRouter()
@@ -26,7 +26,9 @@ const Login: React.FC = () => {
     })()
   }, [user])
 
-  const handleLogin = async () => {
+  const handleLogin = async e => {
+    e.preventDefault()
+
     try {
       const response = await loginMutation({
         variables: {
@@ -37,6 +39,7 @@ const Login: React.FC = () => {
         }
       })
       login(response?.data?.login?.token)
+      router.push('/')
     } catch (error) {
       console.log(error)
     }
@@ -53,7 +56,10 @@ const Login: React.FC = () => {
         </button>
       </div>
 
-      <div className="flex h-[calc(100vh_-_82px)] flex-col justify-between px-5 pt-6">
+      <form
+        onSubmit={handleLogin}
+        className="flex h-[calc(100vh_-_82px)] flex-col justify-between px-5 pt-6"
+      >
         <div>
           <h3 className="mb-2 text-2xl font-bold text-primary">
             Inicia Sesión
@@ -94,13 +100,13 @@ const Login: React.FC = () => {
           </div>
 
           <button
+            type="submit"
             className="h-12 w-full rounded bg-primary text-white"
-            onClick={handleLogin}
           >
             Inicia Sesión
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

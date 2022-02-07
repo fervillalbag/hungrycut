@@ -2,7 +2,9 @@ import useAuth from '@/hooks/useAuth'
 import React from 'react'
 
 const Home: React.FC = () => {
-  const { logout } = useAuth()
+  const { isLogged = false, logout } = useAuth()
+
+  console.log(isLogged)
 
   return (
     <div>
