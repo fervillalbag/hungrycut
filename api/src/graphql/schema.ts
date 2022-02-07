@@ -22,6 +22,18 @@ const typeDefs = gql`
     token: String
   }
 
+  type Report {
+    id: String
+    name: String
+    type: String
+    image: String
+    proteins: Int
+    carbohydrates: Int
+    calories: Int
+    isFavorite: Boolean
+    feeling: String
+  }
+
   # Input
 
   input RegisterInput {
@@ -36,16 +48,32 @@ const typeDefs = gql`
     password: String
   }
 
-  type Query {
-    hello: String
+  input ReportInput {
+    name: String
+    type: String
+    image: String
+    proteins: Int
+    carbohydrates: Int
+    calories: Int
+    isFavorite: Boolean
+    feeling: String
+  }
 
+  type Query {
+    # User
     getUsers: [User]
     getUser(id: String, username: String): User
   }
 
   type Mutation {
+    # User
     register(input: RegisterInput!): MutationResponse
     login(input: LoginInput!): Token
+
+    # Report
+    createReport(input: ReportInput!): MutationResponse
+    updateReport(input: ReportInput!, id: String): MutationResponse
+    deleteReport(id: String!): MutationResponse
   }
 `;
 
