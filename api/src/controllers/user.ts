@@ -96,7 +96,32 @@ const login = async (input: LoginType) => {
   };
 };
 
+const getUsers = async () => {
+  try {
+    const users = await User.find({});
+    return users;
+  } catch (error) {
+    return null;
+  }
+};
+
+const getUser = async (id: string, username: string) => {
+  try {
+    let user;
+    if (id) user = User.findOne({ id });
+    if (username) user = User.findOne({ username });
+
+    if (!user) throw new Error("El usuario no existe");
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 export default {
   register,
   login,
+  getUsers,
+  getUser,
 };

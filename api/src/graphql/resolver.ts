@@ -4,6 +4,11 @@ import userController from "../controllers/user";
 const resolvers = {
   Query: {
     hello: () => "Hello hungryCut project",
+    getUsers: () => userController.getUsers(),
+    getUser: (
+      _: any,
+      { id, username }: { id: string; username: string }
+    ) => userController.getUser(id, username),
   },
 
   Mutation: {
