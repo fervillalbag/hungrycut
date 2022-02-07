@@ -11,6 +11,12 @@ const resolvers = {
       _: any,
       { id, username }: { id: string; username: string }
     ) => userController.getUser(id, username),
+
+    // ** Report ** //
+    getReports: (_: any, { idUser }: { idUser: string }) =>
+      reportController.getReports(idUser),
+    getReport: (_: any, { id }: { id: string }) =>
+      reportController.getReport(id),
   },
 
   Mutation: {
@@ -21,8 +27,11 @@ const resolvers = {
       userController.login(input),
 
     // ** Report ** //
-    createReport: (_: any, { input }: { input: ReportTypeInput }) =>
-      reportController.createReport(input),
+    createReport: (
+      _: any,
+      { input }: { input: ReportTypeInput },
+      ctx: any
+    ) => reportController.createReport(input, ctx),
     updateReport: (
       _: any,
       { input, id }: { input: ReportTypeInput; id: string }

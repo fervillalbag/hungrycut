@@ -37,6 +37,11 @@ const ReportSchema = new Schema(
       type: String,
       required: true,
     },
+    idUser: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

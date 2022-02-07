@@ -8,6 +8,7 @@ export type ReportType = {
   calories: number;
   isFavorite: Boolean;
   feeling: string;
+  idUser: string;
 };
 
 export type ReportTypeInput = {

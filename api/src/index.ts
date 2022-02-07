@@ -1,6 +1,7 @@
 import { ApolloServer } from "apollo-server";
 import mongoose, { ConnectOptions } from "mongoose";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
 import typeDefs from "./graphql/schema";
 import resolvers from "./graphql/resolver";
@@ -12,6 +13,23 @@ const mongodbUri: any = process.env.MONGODB_URI;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => {
+    const token = req.headers.authorization;
+
+    if (token) {
+      try {
+        const user = jwt.verify(
+          token.replace("Bearer ", ""),
+          process.env.SECRET_KEY_LOGIN as string
+        );
+        return {
+          user,
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  },
 });
 
 mongoose

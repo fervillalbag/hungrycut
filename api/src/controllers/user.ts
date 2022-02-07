@@ -108,7 +108,7 @@ const getUsers = async () => {
 const getUser = async (id: string, username: string) => {
   try {
     let user;
-    if (id) user = User.findOne({ id });
+    if (id) user = User.findOne({ _id: id });
     if (username) user = User.findOne({ username });
 
     if (!user) throw new Error("El usuario no existe");

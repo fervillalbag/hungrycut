@@ -32,6 +32,7 @@ const typeDefs = gql`
     calories: Int
     isFavorite: Boolean
     feeling: String
+    idUser: String
   }
 
   # Input
@@ -57,12 +58,17 @@ const typeDefs = gql`
     calories: Int
     isFavorite: Boolean
     feeling: String
+    idUser: String
   }
 
   type Query {
     # User
     getUsers: [User]
     getUser(id: String, username: String): User
+
+    # Report
+    getReports(idUser: String!): [Report]
+    getReport(id: String!): Report
   }
 
   type Mutation {
