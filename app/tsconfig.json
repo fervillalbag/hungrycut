@@ -2,6 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@/hooks/*": ["hooks/*"],
+      "@/utils/*": ["utils/*"],
+      "@/context/*": ["context/*"],
       "@/graphql/*": ["graphql/*"],
       "@/config/*": ["config/*"],
       "@/layout": ["layout"],

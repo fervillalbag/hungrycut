@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { FaAngleLeft } from 'react-icons/fa'
 import { useRouter } from 'next/router'
@@ -6,19 +6,29 @@ import { useRouter } from 'next/router'
 import { LOGIN } from '@/graphql/mutations/user'
 import { useMutation } from '@apollo/client'
 import { UserLoginType } from '@/types/User'
+import useAuth from '@/hooks/useAuth'
 
 const Login: React.FC = () => {
   const router = useRouter()
+  const { login, user } = useAuth()
 
   const [userData, setUserData] = useState<UserLoginType>({
     email: '',
     password: ''
   })
-  const [login] = useMutation(LOGIN)
+  const [loginMutation] = useMutation(LOGIN)
+
+  useEffect(() => {
+    ;(async () => {
+      if (user) {
+        return router.push('/')
+      }
+    })()
+  }, [user])
 
   const handleLogin = async () => {
     try {
-      const response = await login({
+      const response = await loginMutation({
         variables: {
           input: {
             email: userData.email,
@@ -26,7 +36,7 @@ const Login: React.FC = () => {
           }
         }
       })
-      console.log(response)
+      login(response?.data?.login?.token)
     } catch (error) {
       console.log(error)
     }
@@ -64,7 +74,7 @@ const Login: React.FC = () => {
               }
             />
             <input
-              type="text"
+              type="password"
               className="w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Contraseña"
               value={userData.password}
