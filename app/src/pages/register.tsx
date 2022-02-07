@@ -1,10 +1,57 @@
-import React from 'react'
-import { FaAngleLeft } from 'react-icons/fa'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { FaAngleLeft } from 'react-icons/fa'
+import { useMutation } from '@apollo/client'
+
+import { REGISTER } from '@/graphql/mutations/user'
+import useAuth from '@/hooks/useAuth'
+import { UserRegisterType } from '@/types/User'
 
 const Register: React.FC = () => {
   const router = useRouter()
+  const { user } = useAuth()
+
+  const [userData, setUserData] = useState<UserRegisterType>({
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    passwordConfirm: ''
+  })
+
+  const [registerMutation] = useMutation(REGISTER)
+
+  useEffect(() => {
+    ;(async () => {
+      if (user) {
+        return router.push('/')
+      }
+    })()
+  }, [user])
+
+  const handleRegister = async e => {
+    e.preventDefault()
+    try {
+      if (userData.password !== userData.passwordConfirm) {
+        return
+      }
+
+      await registerMutation({
+        variables: {
+          input: {
+            name: userData.name,
+            username: userData.username,
+            email: userData.email,
+            password: userData.password
+          }
+        }
+      })
+      router.push('/login')
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
@@ -17,7 +64,7 @@ const Register: React.FC = () => {
         </button>
       </div>
 
-      <div className="px-5 pt-6">
+      <form onSubmit={handleRegister} className="px-5 pt-6">
         <div>
           <h3 className="mb-2 text-2xl font-bold text-primary">Regístrate</h3>
 
@@ -30,43 +77,64 @@ const Register: React.FC = () => {
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Nombre y apellido"
+              value={userData.name}
+              onChange={e => setUserData({ ...userData, name: e.target.value })}
             />
             <input
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Nombre de usuario"
+              value={userData.username}
+              onChange={e =>
+                setUserData({ ...userData, username: e.target.value })
+              }
             />
             <input
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Correo electrónico"
+              value={userData.email}
+              onChange={e =>
+                setUserData({ ...userData, email: e.target.value })
+              }
             />
             <input
-              type="text"
+              type="password"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Contraseña"
+              value={userData.password}
+              onChange={e =>
+                setUserData({ ...userData, password: e.target.value })
+              }
             />
             <input
-              type="text"
+              type="password"
               className="w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Confirmar contraseña"
+              value={userData.passwordConfirm}
+              onChange={e =>
+                setUserData({ ...userData, passwordConfirm: e.target.value })
+              }
             />
           </div>
         </div>
 
         <div className="my-8">
           <div className="mb-3 flex justify-center">
-            <p className="text-primary">¿Ya tienes una cuenta? </p>
+            <p className="password-primary">¿Ya tienes una cuenta? </p>
             <Link href="/login">
               <a className="ml-1 block font-semibold">Inicia sesión</a>
             </Link>
           </div>
 
-          <button className="h-12 w-full rounded bg-primary text-white">
+          <button
+            type="submit"
+            className="h-12 w-full rounded bg-primary text-white"
+          >
             Registrarse
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
