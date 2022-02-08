@@ -31,8 +31,9 @@ const typeDefs = gql`
     carbohydrates: Int
     calories: Int
     isFavorite: Boolean
-    feeling: String
+    feeling: Int
     idUser: String
+    createdAt: String
   }
 
   # Input
@@ -57,7 +58,7 @@ const typeDefs = gql`
     carbohydrates: Int
     calories: Int
     isFavorite: Boolean
-    feeling: String
+    feeling: Int
     idUser: String
   }
 

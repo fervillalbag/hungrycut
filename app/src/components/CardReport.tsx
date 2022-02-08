@@ -1,32 +1,55 @@
 import React from 'react'
+// import { useRouter } from 'next/router'
+import dayjs from 'dayjs'
+import { ReportType } from '@/types/Report'
+import es from 'dayjs/locale/es'
+import { useQuery } from '@apollo/client'
+import { GET_USER } from '@/graphql/queries/user'
 
-const CardReport: React.FC = () => {
+dayjs.locale(es)
+
+interface CardReportIprops {
+  report: ReportType
+}
+
+const CardReport: React.FC<CardReportIprops> = ({ report }) => {
+  const { data: user } = useQuery(GET_USER, {
+    variables: {
+      id: report?.idUser
+    }
+  })
+
   return (
-    <div className="overflow-hidden rounded-md shadow-lg">
+    <div
+      className="overflow-hidden rounded-md shadow-lg"
+      // onClick={() => router.push('/post')}
+    >
       <div className="relative">
-        <img
-          src="https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-          alt=""
-          className="h-36 w-full object-cover"
-        />
+        <img src={report.image} alt="" className="h-48 w-full object-cover" />
         <div className="absolute top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)]"></div>
         <div className="absolute right-0 top-0 z-20 rounded-bl-md bg-slate-200 px-4 py-1">
           <span className="block text-sm font-semibold text-slate-600">
-            Cena
+            {report.type}
           </span>
         </div>
 
         <div className="absolute bottom-0 left-0 z-20 flex p-2">
           <div className="mr-4">
-            <span className="block text-3xl font-bold text-white">80%</span>
+            <span className="block text-3xl font-bold text-white">
+              {report.carbohydrates}%
+            </span>
             <span className="block text-sm text-white">Carboh</span>
           </div>
           <div className="mr-4">
-            <span className="block text-3xl font-bold text-white">40%</span>
+            <span className="block text-3xl font-bold text-white">
+              {report.proteins}%
+            </span>
             <span className="block text-sm text-white">Proteínas</span>
           </div>
           <div className="mr-4">
-            <span className="block text-3xl font-bold text-white">200</span>
+            <span className="block text-3xl font-bold text-white">
+              {report.calories}
+            </span>
             <span className="block text-sm text-white">Calorías</span>
           </div>
         </div>
@@ -34,27 +57,39 @@ const CardReport: React.FC = () => {
 
       <div className="bg-white p-3 py-4">
         <div className="mb-2">
-          <img src="/stars-0.png" className="w-24" alt="" />
+          {report.feeling === 1 ? (
+            <img src="/stars-1.png" className="w-24" alt="" />
+          ) : report.feeling === 2 ? (
+            <img src="/stars-2.png" className="w-24" alt="" />
+          ) : report.feeling === 3 ? (
+            <img src="/stars-3.png" className="w-24" alt="" />
+          ) : report.feeling === 4 ? (
+            <img src="/stars-4.png" className="w-24" alt="" />
+          ) : report.feeling === 5 ? (
+            <img src="/stars-5.png" className="w-24" alt="" />
+          ) : null}
         </div>
 
         <span className="block text-xl font-semibold text-primary">
-          Nombre de la comida del día
+          {report.name}
         </span>
 
         <div className="mt-3 flex items-center">
           <div className="mr-3">
             <img
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+              src={user?.getUser?.avatar || '/avatar.png'}
               alt=""
               className="h-10 w-10 rounded-full object-cover"
             />
           </div>
           <div>
             <span className="block text-sm font-semibold text-primary">
-              Brenda Codas
+              {user?.getUser?.name}
             </span>
             <span className="block text-sm text-slate-400">
-              Vie 10 marzo 2021, 19:40
+              {dayjs(Number(report.createdAt))
+                .locale('es')
+                .format('dddd, D MMMM YYYY')}
             </span>
           </div>
         </div>
