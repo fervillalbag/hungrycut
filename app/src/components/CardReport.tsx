@@ -57,15 +57,15 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
 
       <div className="bg-white p-3 py-4">
         <div className="mb-2">
-          {report.feeling === 1 ? (
+          {report.isFavorite === 1 ? (
             <img src="/stars-1.png" className="w-24" alt="" />
-          ) : report.feeling === 2 ? (
+          ) : report.isFavorite === 2 ? (
             <img src="/stars-2.png" className="w-24" alt="" />
-          ) : report.feeling === 3 ? (
+          ) : report.isFavorite === 3 ? (
             <img src="/stars-3.png" className="w-24" alt="" />
-          ) : report.feeling === 4 ? (
+          ) : report.isFavorite === 4 ? (
             <img src="/stars-4.png" className="w-24" alt="" />
-          ) : report.feeling === 5 ? (
+          ) : report.isFavorite === 5 ? (
             <img src="/stars-5.png" className="w-24" alt="" />
           ) : null}
         </div>
@@ -89,7 +89,7 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
             <span className="block text-sm text-slate-400">
               {dayjs(Number(report.createdAt))
                 .locale('es')
-                .format('dddd, D MMMM YYYY')}
+                .format('dddd, D MMMM YYYY hh:mm')}
             </span>
           </div>
         </div>

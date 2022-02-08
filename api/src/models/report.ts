@@ -29,7 +29,7 @@ const ReportSchema = new Schema({
     default: 0,
   },
   isFavorite: {
-    type: Boolean,
+    type: Number,
     required: true,
   },
   feeling: {

@@ -30,7 +30,7 @@ const typeDefs = gql`
     proteins: Int
     carbohydrates: Int
     calories: Int
-    isFavorite: Boolean
+    isFavorite: Int
     feeling: Int
     idUser: String
     createdAt: String
@@ -57,7 +57,7 @@ const typeDefs = gql`
     proteins: Int
     carbohydrates: Int
     calories: Int
-    isFavorite: Boolean
+    isFavorite: Int
     feeling: Int
     idUser: String
   }

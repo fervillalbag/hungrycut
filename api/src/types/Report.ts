@@ -6,7 +6,7 @@ export type ReportType = {
   proteins: number;
   carbohydrates: number;
   calories: number;
-  isFavorite: Boolean;
+  isFavorite: number;
   feeling: string;
   idUser: string;
 };
@@ -18,6 +18,6 @@ export type ReportTypeInput = {
   proteins: number;
   carbohydrates: number;
   calories: number;
-  isFavorite: Boolean;
+  isFavorite: number;
   feeling: string;
 };

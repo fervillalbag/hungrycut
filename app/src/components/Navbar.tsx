@@ -10,7 +10,7 @@ const Navbar = () => {
   const router = useRouter()
 
   return (
-    <div className="fixed bottom-0 mx-auto flex h-16 w-full max-w-lg items-center justify-between bg-white px-8">
+    <div className="fixed bottom-0 z-40 mx-auto flex h-16 w-full max-w-lg items-center justify-between bg-white px-8">
       <Link href="/">
         <a
           className={`block text-2xl ${
@@ -29,7 +29,7 @@ const Navbar = () => {
           <HiSearch />
         </a>
       </Link>
-      <Link href="/">
+      <Link href="/create">
         <a
           className={`block text-2xl text-primary ${
             router.pathname === '/create' ? 'text-primary' : 'text-slate-300'

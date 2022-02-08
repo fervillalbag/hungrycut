@@ -6,7 +6,7 @@ export type ReportType = {
   proteins: number
   carbohydrates: number
   calories: number
-  isFavorite: boolean
+  isFavorite: number
   feeling: number
   idUser: string
   createdAt: string

@@ -5,6 +5,7 @@ import Layout from '@/components/Layout'
 import CardReport from '@/components/CardReport'
 import { useQuery } from '@apollo/client'
 import { GET_REPORTS } from '@/graphql/queries/reports'
+import { ReportType } from '@/types/Report'
 
 const Home: React.FC = () => {
   const { user } = useAuth()
@@ -12,12 +13,13 @@ const Home: React.FC = () => {
   const { data: reports, loading } = useQuery(GET_REPORTS, {
     variables: {
       idUser: user?.id
-    }
+    },
+    fetchPolicy: 'network-only'
   })
 
-  if (loading) return null
-
   console.log(reports)
+
+  if (loading) return null
 
   return (
     <Layout>
@@ -26,8 +28,8 @@ const Home: React.FC = () => {
       </header>
 
       <div className="px-5">
-        {reports.getReports.map((report: any) => (
-          <div key={report.id}>
+        {reports.getReports.map((report: ReportType) => (
+          <div key={report.id} className="mb-8">
             <CardReport report={report} />
           </div>
         ))}
