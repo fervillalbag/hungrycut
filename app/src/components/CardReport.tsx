@@ -89,7 +89,7 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
             <span className="block text-sm text-slate-400">
               {dayjs(Number(report.createdAt))
                 .locale('es')
-                .format('dddd, D MMMM YYYY hh:mm')}
+                .format('dddd, D MMMM YYYY HH:mm')}
             </span>
           </div>
         </div>

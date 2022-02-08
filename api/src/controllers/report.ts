@@ -24,6 +24,7 @@ const createReport = async (input: ReportTypeInput, ctx: any) => {
       isFavorite,
       feeling,
       idUser: ctx.user.id,
+      createdAt: new Date(),
     });
     await report.save();
 
