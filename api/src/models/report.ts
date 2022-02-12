@@ -41,6 +41,10 @@ const ReportSchema = new Schema({
     required: true,
     ref: "User",
   },
+  date: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,

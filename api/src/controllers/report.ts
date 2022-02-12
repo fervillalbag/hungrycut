@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import { ReportTypeInput } from "types/Report";
 import Report from "../models/report";
 
@@ -22,8 +24,9 @@ const createReport = async (input: ReportTypeInput, ctx: any) => {
       carbohydrates,
       proteins,
       isFavorite,
-      feeling,
       idUser: ctx.user.id,
+      feeling,
+      date: dayjs(new Date()).format("YYYY-MM-DD"),
       createdAt: new Date(),
     });
     await report.save();
@@ -75,11 +78,26 @@ const deleteReport = async (id: string) => {
   }
 };
 
-const getReports = async (idUser: string) => {
+const getReports = async (idUser: string, date: string) => {
   try {
-    const reports = await Report.find({ idUser });
-    if (!reports) throw new Error("No existen reportes");
-    return reports;
+    console.log(
+      dayjs(Number(date)).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+    );
+
+    if (!date) {
+      const reports = await Report.find({ idUser });
+      if (!reports) throw new Error("No existen reportes");
+
+      return reports;
+    } else {
+      const reports = await Report.find({
+        idUser,
+      }).where({
+        date: dayjs(Number(date)).format("YYYY-MM-DD"),
+      });
+      if (!reports) throw new Error("No existen reportes");
+      return reports;
+    }
   } catch (error) {
     console.log(error);
     return null;

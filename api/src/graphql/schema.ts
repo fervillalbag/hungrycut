@@ -33,6 +33,7 @@ const typeDefs = gql`
     isFavorite: Int
     feeling: Int
     idUser: String
+    date: String
     createdAt: String
   }
 
@@ -60,6 +61,7 @@ const typeDefs = gql`
     isFavorite: Int
     feeling: Int
     idUser: String
+    date: String
   }
 
   type Query {
@@ -68,7 +70,7 @@ const typeDefs = gql`
     getUser(id: String, username: String): User
 
     # Report
-    getReports(idUser: String!): [Report]
+    getReports(idUser: String!, date: String): [Report]
     getReport(id: String!): Report
   }
 

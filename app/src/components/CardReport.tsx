@@ -5,6 +5,7 @@ import { ReportType } from '@/types/Report'
 import es from 'dayjs/locale/es'
 import { useQuery } from '@apollo/client'
 import { GET_USER } from '@/graphql/queries/user'
+import { BsThreeDots } from 'react-icons/bs'
 
 dayjs.locale(es)
 
@@ -70,27 +71,33 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
           ) : null}
         </div>
 
-        <span className="block text-xl font-semibold text-primary">
-          {report.name}
-        </span>
+        <span className="block text-base text-primary">{report.name}</span>
 
-        <div className="mt-3 flex items-center">
-          <div className="mr-3">
-            <img
-              src={user?.getUser?.avatar || '/avatar.png'}
-              alt=""
-              className="h-10 w-10 rounded-full object-cover"
-            />
+        <div className="flex items-end justify-between">
+          <div className="mt-3 flex items-center">
+            <div className="mr-3">
+              <img
+                src={user?.getUser?.avatar || '/avatar.png'}
+                alt=""
+                className="h-10 w-10 rounded-full object-cover"
+              />
+            </div>
+            <div>
+              <span className="block text-sm font-semibold text-primary">
+                {user?.getUser?.name}
+              </span>
+              <span className="block text-sm text-slate-400">
+                {dayjs(Number(report.createdAt))
+                  .locale('es')
+                  .format('DD/MM/YYYY HH:mm')}
+              </span>
+            </div>
           </div>
-          <div>
-            <span className="block text-sm font-semibold text-primary">
-              {user?.getUser?.name}
-            </span>
-            <span className="block text-sm text-slate-400">
-              {dayjs(Number(report.createdAt))
-                .locale('es')
-                .format('dddd, D MMMM YYYY HH:mm')}
-            </span>
+
+          <div className="flex items-center justify-center">
+            <button className="rounded bg-slate-100 p-2 text-2xl">
+              <BsThreeDots />
+            </button>
           </div>
         </div>
       </div>

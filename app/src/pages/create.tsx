@@ -96,7 +96,7 @@ const Create: React.FC = () => {
   return (
     <Layout>
       <header className="p-5">
-        <span className="block text-2xl font-bold text-primary">
+        <span className="block text-2xl font-semibold text-primary">
           Crear reporte
         </span>
       </header>

@@ -13,8 +13,10 @@ const resolvers = {
     ) => userController.getUser(id, username),
 
     // ** Report ** //
-    getReports: (_: any, { idUser }: { idUser: string }) =>
-      reportController.getReports(idUser),
+    getReports: (
+      _: any,
+      { idUser, date }: { idUser: string; date: string }
+    ) => reportController.getReports(idUser, date),
     getReport: (_: any, { id }: { id: string }) =>
       reportController.getReport(id),
   },

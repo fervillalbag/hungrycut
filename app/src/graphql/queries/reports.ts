@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const GET_REPORTS = gql`
-  query getReports($idUser: String!) {
-    getReports(idUser: $idUser) {
+  query getReports($idUser: String!, $date: String) {
+    getReports(idUser: $idUser, date: $date) {
       id
       name
       type
@@ -13,6 +13,7 @@ export const GET_REPORTS = gql`
       isFavorite
       feeling
       idUser
+      date
       createdAt
     }
   }
