@@ -30,7 +30,17 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
         <div className="absolute top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)]"></div>
         <div className="absolute right-0 top-0 z-20 rounded-bl-md bg-slate-200 px-4 py-1">
           <span className="block text-sm font-semibold text-slate-600">
-            {report.type}
+            {report.type === 'breakfast'
+              ? 'Desayuno'
+              : report.type === 'lunch'
+              ? 'Almuerzo'
+              : report.type === 'after_snack'
+              ? 'Merienda'
+              : report.type === 'dinner'
+              ? 'Cena'
+              : report.type === 'midmorning'
+              ? 'Media mañana'
+              : 'Tentempié'}
           </span>
         </div>
 

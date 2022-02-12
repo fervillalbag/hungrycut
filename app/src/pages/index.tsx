@@ -58,11 +58,17 @@ const Home: React.FC<HomeIprops> = () => {
       </div>
 
       <div className="mt-3 px-5">
-        {reports?.getReports.map((report: ReportType) => (
-          <div key={report.id} className="mb-8">
-            <CardReport report={report} />
+        {reports?.getReports.length === 0 ? (
+          <div className="flex h-[calc(100vh_-_275px)] items-center justify-center">
+            <span className="block">No hay reportes generados</span>
           </div>
-        ))}
+        ) : (
+          reports?.getReports.map((report: ReportType) => (
+            <div key={report.id} className="mb-8">
+              <CardReport report={report} />
+            </div>
+          ))
+        )}
       </div>
     </Layout>
   )

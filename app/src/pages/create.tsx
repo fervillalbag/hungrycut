@@ -56,21 +56,6 @@ const Create: React.FC = () => {
     })
     const imageData = await resImage.json()
 
-    // console.log({
-    //   input: {
-    //     name: nameFood,
-    //     type: typeFood,
-    //     image: imageData?.secure_url,
-    //     calories: caloriesValue,
-    //     carbohydrates: carbohydratesValue,
-    //     proteins: proteinsValue,
-    //     isFavorite: Number(favorite),
-    //     feeling: Number(feeling)
-    //   }
-    // })
-
-    // return
-
     try {
       const response = await createReportMutation({
         variables: {
@@ -96,7 +81,7 @@ const Create: React.FC = () => {
   return (
     <Layout>
       <header className="p-5">
-        <span className="block text-2xl font-semibold text-primary">
+        <span className="block text-xl font-semibold text-primary">
           Crear reporte
         </span>
       </header>
