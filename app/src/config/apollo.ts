@@ -5,7 +5,7 @@ import { setContext } from '@apollo/client/link/context'
 import { getToken } from '@/utils/helpers'
 
 const httpLink = createUploadLink({
-  uri: 'http://localhost:4000'
+  uri: process.env.API_URL
 })
 
 const authLink = setContext((_, { headers }) => {

@@ -13,7 +13,7 @@ interface HomeIprops {
 }
 
 interface DateType {
-  date: number
+  date: string | null
 }
 
 const Home: React.FC<HomeIprops> = () => {
@@ -22,19 +22,19 @@ const Home: React.FC<HomeIprops> = () => {
   const [buttonTabActive, setButtonTabActive] = useState<string>('today')
 
   const [currentDate, setCurrentDate] = useState<DateType>({
-    date: 0
+    date: dayjs().format('YYYY-MM-DD')
   })
 
   useEffect(() => {
-    if (currentDate.date === 0) {
-      setCurrentDate({ date: dayjs().valueOf() })
+    if (currentDate.date === '') {
+      setCurrentDate({ date: dayjs().format('YYYY-MM-DD') })
     }
   }, [currentDate])
 
   const { data: reports, loading } = useQuery(GET_REPORTS, {
     variables: {
       idUser: user?.id,
-      date: currentDate?.date.toString()
+      date: currentDate?.date
     }
   })
 
@@ -54,7 +54,7 @@ const Home: React.FC<HomeIprops> = () => {
             buttonTabActive === 'today' && 'bg-primary text-white'
           }`}
           onClick={() => {
-            setCurrentDate({ date: dayjs().valueOf() })
+            setCurrentDate({ date: dayjs().format('YYYY-MM-DD') })
             setButtonTabActive('today')
           }}
         >
@@ -65,7 +65,9 @@ const Home: React.FC<HomeIprops> = () => {
             buttonTabActive === 'yesterday' && 'bg-primary text-white'
           }`}
           onClick={() => {
-            setCurrentDate({ date: dayjs().subtract(1, 'day').valueOf() })
+            setCurrentDate({
+              date: dayjs().subtract(1, 'day').format('YYYY-MM-DD')
+            })
             setButtonTabActive('yesterday')
           }}
         >
