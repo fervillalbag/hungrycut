@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
 import Layout from '@/components/Layout'
 import { useQuery } from '@apollo/client'
@@ -8,6 +9,7 @@ import CardReport from '@/components/CardReport'
 import { ReportType } from '@/types/Report'
 
 const History: React.FC = () => {
+  const router = useRouter()
   const { user } = useAuth()
 
   const { data: reports, loading } = useQuery(GET_REPORTS, {
@@ -47,6 +49,7 @@ const History: React.FC = () => {
         </button>
         <button
           className={`rounded border border-primary py-2 font-semibold text-primary`}
+          onClick={() => router.push('/calendar')}
         >
           Calendario
         </button>

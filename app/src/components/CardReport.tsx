@@ -20,11 +20,6 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
     }
   })
 
-  const imageExt = report.image.slice(
-    report.image.length - 4,
-    report.image.length
-  )
-
   return (
     <div
       className="overflow-hidden rounded-md shadow-lg"
@@ -33,7 +28,7 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
       <div className="relative">
         <img
           src={
-            !report.image || (imageExt !== '.jpg' && imageExt !== '.png')
+            !report.image.includes('cloudinary')
               ? '/empty-report.jpg'
               : report.image
           }

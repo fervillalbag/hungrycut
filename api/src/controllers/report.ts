@@ -93,7 +93,7 @@ const getReports = async (idUser: string, date: string) => {
       const reports = await Report.find({
         idUser,
       }).where({
-        date: dayjs(Number(date)).format("YYYY-MM-DD"),
+        date,
       });
       if (!reports) throw new Error("No existen reportes");
       return reports;

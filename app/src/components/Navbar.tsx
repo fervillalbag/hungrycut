@@ -1,10 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
+import { MdOutlineHistory } from 'react-icons/md'
 import { HiHome, HiSearch, HiUser } from 'react-icons/hi'
 import { BsFillPlusSquareFill } from 'react-icons/bs'
-import { MdOutlineHistory } from 'react-icons/md'
-import { useRouter } from 'next/router'
 
 const Navbar = () => {
   const router = useRouter()
@@ -41,7 +40,9 @@ const Navbar = () => {
       <Link href="/history">
         <a
           className={`block text-2xl text-primary ${
-            router.pathname === '/history' ? 'text-primary' : 'text-slate-300'
+            router.pathname === '/history' || router.pathname === '/calendar'
+              ? 'text-primary'
+              : 'text-slate-300'
           }`}
         >
           <MdOutlineHistory />
