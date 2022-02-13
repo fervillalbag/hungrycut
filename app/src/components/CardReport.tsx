@@ -20,13 +20,26 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
     }
   })
 
+  const imageExt = report.image.slice(
+    report.image.length - 4,
+    report.image.length
+  )
+
   return (
     <div
       className="overflow-hidden rounded-md shadow-lg"
       // onClick={() => router.push('/post')}
     >
       <div className="relative">
-        <img src={report.image} alt="" className="h-48 w-full object-cover" />
+        <img
+          src={
+            !report.image || (imageExt !== '.jpg' && imageExt !== '.png')
+              ? '/empty-report.jpg'
+              : report.image
+          }
+          alt=""
+          className="h-48 w-full object-cover"
+        />
         <div className="absolute top-0 z-10 h-full w-full bg-[rgba(0,0,0,0.5)]"></div>
         <div className="absolute right-0 top-0 z-20 rounded-bl-md bg-slate-200 px-4 py-1">
           <span className="block text-sm font-semibold text-slate-600">
