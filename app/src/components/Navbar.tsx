@@ -38,7 +38,7 @@ const Navbar = () => {
           <BsFillPlusSquareFill />
         </a>
       </Link>
-      <Link href="/">
+      <Link href="/history">
         <a
           className={`block text-2xl text-primary ${
             router.pathname === '/history' ? 'text-primary' : 'text-slate-300'
