@@ -19,6 +19,8 @@ interface DateType {
 const Home: React.FC<HomeIprops> = () => {
   const { user } = useAuth()
 
+  const [buttonTabActive, setButtonTabActive] = useState<string>('today')
+
   const [currentDate, setCurrentDate] = useState<DateType>({
     date: 0
   })
@@ -36,8 +38,6 @@ const Home: React.FC<HomeIprops> = () => {
     }
   })
 
-  if (loading || !reports) return null
-
   return (
     <Layout>
       <header className="p-5">
@@ -49,16 +49,34 @@ const Home: React.FC<HomeIprops> = () => {
       </div>
 
       <div className="grid grid-cols-2 gap-x-4 px-5 pb-5">
-        <button className="rounded border border-primary bg-primary py-2 font-semibold text-white">
+        <button
+          className={`rounded border border-primary py-2 font-semibold ${
+            buttonTabActive === 'today' && 'bg-primary text-white'
+          }`}
+          onClick={() => {
+            setCurrentDate({ date: dayjs().valueOf() })
+            setButtonTabActive('today')
+          }}
+        >
           Hoy
         </button>
-        <button className="rounded border border-primary py-2 font-semibold text-primary">
+        <button
+          className={`rounded border border-primary py-2 font-semibold text-primary ${
+            buttonTabActive === 'yesterday' && 'bg-primary text-white'
+          }`}
+          onClick={() => {
+            setCurrentDate({ date: dayjs().subtract(1, 'day').valueOf() })
+            setButtonTabActive('yesterday')
+          }}
+        >
           Ayer
         </button>
       </div>
 
       <div className="mt-3 px-5">
-        {reports?.getReports.length === 0 ? (
+        {loading ? (
+          <span className="block text-center">Cargando..</span>
+        ) : reports?.getReports.length === 0 ? (
           <div className="flex h-[calc(100vh_-_275px)] items-center justify-center">
             <span className="block">No hay reportes generados</span>
           </div>
