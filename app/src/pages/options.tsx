@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Layout from '@/components/Layout'
 import { useRouter } from 'next/router'
+import { getToken } from '@/utils/helpers'
+import { isAuth, isUserNotFound } from '@/utils/actions'
 
 const Options: React.FC = () => {
+  isUserNotFound()
   const router = useRouter()
+
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      return null
+    } else {
+      isAuth()
+    }
+  }, [])
 
   return (
     <Layout>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { CgSoftwareUpload } from 'react-icons/cg'
 import { IoStar, IoStarOutline } from 'react-icons/io5'
@@ -8,8 +8,11 @@ import Layout from '@/components/Layout'
 import { FileType } from '@/types/File'
 import { useMutation } from '@apollo/client'
 import { CREATE_REPORT } from '@/graphql/mutations/report'
+import { getToken } from '@/utils/helpers'
+import { isAuth, isUserNotFound } from '@/utils/actions'
 
 const Create: React.FC = () => {
+  isUserNotFound()
   const router = useRouter()
 
   const [image, setImage] = useState(null)
@@ -25,6 +28,16 @@ const Create: React.FC = () => {
   const [caloriesValue, setCaloriesValue] = useState<number>(0)
 
   const [createReportMutation] = useMutation(CREATE_REPORT)
+
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      return null
+    } else {
+      isAuth()
+    }
+  }, [])
 
   const handleUploadImage = () => {
     inputFileRef.current.click()

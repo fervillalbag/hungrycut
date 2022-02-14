@@ -7,6 +7,8 @@ import { GET_REPORTS } from '@/graphql/queries/reports'
 import { ReportType } from '@/types/Report'
 import useAuth from '@/hooks/useAuth'
 import dayjs from 'dayjs'
+import { isAuth, isUserNotFound } from '@/utils/actions'
+import { getToken } from '@/utils/helpers'
 
 interface HomeIprops {
   reports: ReportType[]
@@ -17,6 +19,8 @@ interface DateType {
 }
 
 const Home: React.FC<HomeIprops> = () => {
+  isUserNotFound()
+
   const { user } = useAuth()
 
   const [buttonTabActive, setButtonTabActive] = useState<string>('today')
@@ -30,6 +34,16 @@ const Home: React.FC<HomeIprops> = () => {
       setCurrentDate({ date: dayjs().format('YYYY-MM-DD') })
     }
   }, [currentDate])
+
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      return null
+    } else {
+      isAuth()
+    }
+  }, [])
 
   const { data: reports, loading } = useQuery(GET_REPORTS, {
     variables: {

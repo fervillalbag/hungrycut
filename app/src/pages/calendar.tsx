@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { Calendar } from '@hassanmojab/react-modern-calendar-datepicker'
@@ -11,8 +11,12 @@ import { GET_REPORTS } from '@/graphql/queries/reports'
 import { ReportType } from '@/types/Report'
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css'
+import { getToken } from '@/utils/helpers'
+import { isAuth, isUserNotFound } from '@/utils/actions'
 
 const CalendarPage: React.FC = () => {
+  isUserNotFound()
+
   const { user } = useAuth()
   const router = useRouter()
 
@@ -31,6 +35,16 @@ const CalendarPage: React.FC = () => {
   const currentYear = selectedDay.year
 
   const currentDateConst = `${currentYear}-${currentMonth}-${currentDay}`
+
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      return null
+    } else {
+      isAuth()
+    }
+  }, [])
 
   const { data: reports, loading } = useQuery(GET_REPORTS, {
     variables: {

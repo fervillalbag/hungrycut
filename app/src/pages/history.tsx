@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { useQuery } from '@apollo/client'
@@ -7,10 +7,24 @@ import useAuth from '@/hooks/useAuth'
 import CardReport from '@/components/CardReport'
 import { ReportType } from '@/types/Report'
 import { FaAngleLeft } from 'react-icons/fa'
+import { getToken } from '@/utils/helpers'
+import { isAuth, isUserNotFound } from '@/utils/actions'
 
 const History: React.FC = () => {
+  isUserNotFound()
+
   const router = useRouter()
   const { user } = useAuth()
+
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      return null
+    } else {
+      isAuth()
+    }
+  }, [])
 
   const { data: reports, loading } = useQuery(GET_REPORTS, {
     variables: {
