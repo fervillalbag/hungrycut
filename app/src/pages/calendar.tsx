@@ -1,16 +1,16 @@
 import React, { useRef, useState } from 'react'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { Calendar } from '@hassanmojab/react-modern-calendar-datepicker'
-
-import Layout from '@/components/Layout'
-
-import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css'
-import dayjs from 'dayjs'
+import { FaAngleLeft } from 'react-icons/fa'
 import { useQuery } from '@apollo/client'
-import { GET_REPORTS } from '@/graphql/queries/reports'
+
 import useAuth from '@/hooks/useAuth'
 import CardReport from '@/components/CardReport'
+import { GET_REPORTS } from '@/graphql/queries/reports'
 import { ReportType } from '@/types/Report'
+
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css'
 
 const CalendarPage: React.FC = () => {
   const { user } = useAuth()
@@ -40,27 +40,19 @@ const CalendarPage: React.FC = () => {
   })
 
   return (
-    <Layout>
-      <header className="p-5">
-        <span className="block text-xl font-semibold text-primary">
+    <div className="bg-slate-50">
+      <header className="flex items-center p-5">
+        <button
+          className="rounded border border-slate-200 bg-white p-3 text-xl"
+          onClick={() => router.back()}
+        >
+          <FaAngleLeft />
+        </button>
+
+        <span className="ml-4 block text-xl font-semibold text-primary">
           Calendario
         </span>
       </header>
-
-      <div className="grid grid-cols-2 gap-x-4 px-5 pb-5">
-        <button
-          className={`rounded border border-primary py-2 font-semibold text-primary`}
-          onClick={() => router.push('/history')}
-        >
-          Todos
-        </button>
-        <button
-          className={`rounded border bg-primary py-2 font-semibold text-white`}
-          onClick={() => router.push('/calendar')}
-        >
-          Calendario
-        </button>
-      </div>
 
       <div className="mt-2 px-5">
         <Calendar
@@ -93,7 +85,7 @@ const CalendarPage: React.FC = () => {
           ))
         )}
       </div>
-    </Layout>
+    </div>
   )
 }
 

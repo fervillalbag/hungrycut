@@ -37,10 +37,10 @@ const Navbar = () => {
           <BsFillPlusSquareFill />
         </a>
       </Link>
-      <Link href="/history">
+      <Link href="/options">
         <a
           className={`block text-2xl text-primary ${
-            router.pathname === '/history' || router.pathname === '/calendar'
+            router.pathname === '/options' || router.pathname === '/calendar'
               ? 'text-primary'
               : 'text-slate-300'
           }`}

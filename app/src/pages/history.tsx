@@ -1,12 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-import Layout from '@/components/Layout'
 import { useQuery } from '@apollo/client'
 import { GET_REPORTS } from '@/graphql/queries/reports'
 import useAuth from '@/hooks/useAuth'
 import CardReport from '@/components/CardReport'
 import { ReportType } from '@/types/Report'
+import { FaAngleLeft } from 'react-icons/fa'
 
 const History: React.FC = () => {
   const router = useRouter()
@@ -34,28 +34,21 @@ const History: React.FC = () => {
   const reportsSorted = arraySort(reports?.getReports)
 
   return (
-    <Layout>
-      <header className="p-5">
-        <span className="block text-xl font-semibold text-primary">
+    <div className="bg-slate-50">
+      <header className="flex items-center p-5">
+        <button
+          className="rounded border border-slate-200 bg-white p-3 text-xl"
+          onClick={() => router.back()}
+        >
+          <FaAngleLeft />
+        </button>
+
+        <span className="ml-4 block text-xl font-semibold text-primary">
           Historial
         </span>
       </header>
 
-      <div className="grid grid-cols-2 gap-x-4 px-5 pb-5">
-        <button
-          className={`rounded border bg-primary py-2 font-semibold text-white`}
-        >
-          Todos
-        </button>
-        <button
-          className={`rounded border border-primary py-2 font-semibold text-primary`}
-          onClick={() => router.push('/calendar')}
-        >
-          Calendario
-        </button>
-      </div>
-
-      <div className="mt-3 px-5">
+      <div className="mt-1 px-5">
         {loading ? (
           <span className="block text-center">Cargando..</span>
         ) : reportsSorted.length === 0 ? (
@@ -70,7 +63,7 @@ const History: React.FC = () => {
           ))
         )}
       </div>
-    </Layout>
+    </div>
   )
 }
 
