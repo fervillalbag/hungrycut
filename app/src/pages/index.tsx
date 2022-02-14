@@ -39,15 +39,25 @@ const Home: React.FC<HomeIprops> = () => {
     fetchPolicy: 'network-only'
   })
 
+  const arraySort = (array = []) => {
+    const arrayValue = [...array]
+
+    const newArray = arrayValue.sort(
+      (a: ReportType, b: ReportType) =>
+        new Date(Number(b.createdAt)).getTime() -
+        new Date(Number(a.createdAt)).getTime()
+    )
+
+    return newArray
+  }
+
+  const reportsSorted = arraySort(reports?.getReports)
+
   return (
     <Layout>
       <header className="p-5">
         <img src="/logo.jpg" className="w-40" alt="" />
       </header>
-
-      <div className="mb-3 px-5">
-        <span className="block text-lg">Lista de Reportes</span>
-      </div>
 
       <div className="grid grid-cols-2 gap-x-4 px-5 pb-5">
         <button
@@ -79,12 +89,12 @@ const Home: React.FC<HomeIprops> = () => {
       <div className="mt-3 px-5">
         {loading ? (
           <span className="block text-center">Cargando..</span>
-        ) : reports?.getReports.length === 0 ? (
+        ) : reportsSorted.length === 0 ? (
           <div className="flex h-[calc(100vh_-_275px)] items-center justify-center">
             <span className="block">No hay reportes generados</span>
           </div>
         ) : (
-          reports?.getReports.map((report: ReportType) => (
+          reportsSorted.map((report: ReportType) => (
             <div key={report.id} className="mb-8">
               <CardReport report={report} />
             </div>
