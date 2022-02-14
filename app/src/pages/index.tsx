@@ -35,7 +35,8 @@ const Home: React.FC<HomeIprops> = () => {
     variables: {
       idUser: user?.id,
       date: currentDate?.date
-    }
+    },
+    fetchPolicy: 'network-only'
   })
 
   return (

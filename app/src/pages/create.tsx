@@ -238,7 +238,7 @@ const Create: React.FC = () => {
         </span>
         <div className="flex items-center">
           <button
-            className={`mr-4 block rounded border-2 border-slate-300 py-2 px-4 ${
+            className={`mr-4 block rounded border-2 py-2 px-4 ${
               feeling === 1 ? 'border-2 border-primary' : 'border-slate-300'
             }`}
             onClick={() => setFeeling(1)}
@@ -246,7 +246,7 @@ const Create: React.FC = () => {
             <img src="/smile.png" alt="" className="h-10 w-10 object-contain" />
           </button>
           <button
-            className={`mr-4 block rounded border-2 border-slate-300 py-2 px-4 ${
+            className={`mr-4 block rounded border-2 py-2 px-4 ${
               feeling === 2 ? 'border-2 border-primary' : 'border-slate-300'
             }`}
             onClick={() => setFeeling(2)}
@@ -254,7 +254,7 @@ const Create: React.FC = () => {
             <img src="/think.png" alt="" className="h-10 w-10 object-contain" />
           </button>
           <button
-            className={`mr-4 block rounded border-2 border-slate-300 py-2 px-4 ${
+            className={`mr-4 block rounded border-2 py-2 px-4 ${
               feeling === 3 ? 'border-2 border-primary' : 'border-slate-300'
             }`}
             onClick={() => setFeeling(3)}
