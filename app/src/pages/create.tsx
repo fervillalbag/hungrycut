@@ -27,6 +27,8 @@ const Create: React.FC = () => {
   const [carbohydratesValue, setCarbohydratesValue] = useState<number>(0)
   const [caloriesValue, setCaloriesValue] = useState<number>(0)
 
+  const [loaderUpload, setLoaderUpload] = useState<boolean>(false)
+
   const [createReportMutation] = useMutation(CREATE_REPORT)
 
   useEffect(() => {
@@ -56,6 +58,8 @@ const Create: React.FC = () => {
   }
 
   const handleCreateReport = async () => {
+    setLoaderUpload(true)
+
     const urlCloudinary = process.env.URL_CLOUDINARY_RES
     const formData = new FormData()
     formData.append('file', fileImage as string | Blob)
@@ -89,6 +93,8 @@ const Create: React.FC = () => {
     } catch (error) {
       console.log(error)
     }
+
+    setLoaderUpload(false)
   }
 
   return (
@@ -98,6 +104,12 @@ const Create: React.FC = () => {
           Crear reporte
         </span>
       </header>
+
+      {loaderUpload && (
+        <div className="lef-0 fixed top-0 z-50 flex h-screen w-screen items-center justify-center bg-white">
+          <span className="block">Subiendo..</span>
+        </div>
+      )}
 
       <div className="mb-5 px-5">
         <div>
