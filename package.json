@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "web": "npm run dev --workspace=app",
-    "api": "npm run dev --workspace=api"
+    "api": "npm run dev --workspace=api",
+    "build": "node api/build/src/index.js"
   },
   "license": "ISC",
   "devDependencies": {
