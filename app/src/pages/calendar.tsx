@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { Calendar } from '@hassanmojab/react-modern-calendar-datepicker'
@@ -9,6 +9,7 @@ import useAuth from '@/hooks/useAuth'
 import CardReport from '@/components/CardReport'
 import { GET_REPORTS } from '@/graphql/queries/reports'
 import { ReportType } from '@/types/Report'
+import Modal from '@/components/Modal'
 
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css'
 import { getToken } from '@/utils/helpers'
@@ -20,13 +21,12 @@ const CalendarPage: React.FC = () => {
   const { user } = useAuth()
   const router = useRouter()
 
+  const [showModal, setShowModal] = useState<boolean>(false)
   const [selectedDay, setSelectedDay] = useState({
     day: Number(dayjs().format('D')),
     month: Number(dayjs().format('M')),
     year: Number(dayjs().format('YYYY'))
   })
-
-  const dateRef = useRef(null)
 
   const currentDay =
     selectedDay.day < 10 ? `0${selectedDay.day}` : selectedDay.day
@@ -68,37 +68,40 @@ const CalendarPage: React.FC = () => {
         </span>
       </header>
 
-      <div className="mt-2 px-5">
+      <div className="mt-2 h-[calc(100vh_-_86px)] px-5">
         <Calendar
           colorPrimary="rgb(58, 62, 65)"
           value={selectedDay}
           onChange={e => {
-            dateRef.current.scrollIntoView()
             setSelectedDay(e)
+            setShowModal(true)
           }}
           shouldHighlightWeekends
         />
       </div>
 
-      <div ref={dateRef} className="mt-6 px-5">
-        <span className="block text-2xl">{currentDateConst}</span>
-      </div>
-
-      <div className="mt-6 px-5">
-        {loading ? (
-          <span className="block py-28 text-center">Cargando..</span>
-        ) : reports?.getReports.length === 0 ? (
-          <div className="flex items-center justify-center py-28">
-            <span className="block">No hay reportes generados</span>
-          </div>
-        ) : (
-          reports?.getReports.map((report: ReportType) => (
-            <div key={report.id} className="mb-8">
-              <CardReport report={report} />
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        type="full"
+        title={currentDateConst}
+      >
+        <div className="mt-6">
+          {loading ? (
+            <span className="block py-28 text-center">Cargando..</span>
+          ) : reports?.getReports.length === 0 ? (
+            <div className="flex items-center justify-center py-28">
+              <span className="block">No hay reportes generados</span>
             </div>
-          ))
-        )}
-      </div>
+          ) : (
+            reports?.getReports.map((report: ReportType) => (
+              <div key={report.id} className="mb-8">
+                <CardReport report={report} />
+              </div>
+            ))
+          )}
+        </div>
+      </Modal>
     </div>
   )
 }
