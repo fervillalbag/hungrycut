@@ -15,15 +15,6 @@
     "build": "node api/build/src/index.js"
   },
   "license": "ISC",
-  "dependencies": {
-    "apollo-server": "^3.6.2",
-    "dotenv": "^16.0.0",
-    "graphql": "^16.3.0",
-    "mongoose": "^6.2.0",
-    "bcryptjs": "2.4.3",
-    "jsonwebtoken": "8.5.1",
-    "dayjs": "1.10.7"
-  },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@hassanmojab/react-modern-calendar-datepicker": "3.1.7",
