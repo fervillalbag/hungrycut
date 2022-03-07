@@ -11,4 +11,4 @@ const Layout: React.FC = ({ children }) => {
   )
 }
 
-module.exports = Layout
+export default Layout

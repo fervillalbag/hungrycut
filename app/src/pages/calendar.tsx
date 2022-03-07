@@ -106,4 +106,4 @@ const CalendarPage: React.FC = () => {
   )
 }
 
-module.exports = CalendarPage
+export default CalendarPage

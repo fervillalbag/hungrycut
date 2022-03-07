@@ -20,4 +20,4 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   )
 }
 
-module.exports = MyApp
+export default MyApp

@@ -25,4 +25,4 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
-module.exports = client
+export default  client

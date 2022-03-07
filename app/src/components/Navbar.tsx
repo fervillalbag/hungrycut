@@ -6,7 +6,7 @@ import { HiHome, HiSearch, HiUser } from 'react-icons/hi'
 import { BsFillPlusSquareFill, BsInfoCircleFill } from 'react-icons/bs'
 import useAuth from '@/hooks/useAuth'
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const router = useRouter()
   const { user } = useAuth()
 
@@ -97,4 +97,4 @@ const Navbar = () => {
   )
 }
 
-module.exports = Navbar
+export default Navbar

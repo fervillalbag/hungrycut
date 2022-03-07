@@ -119,4 +119,4 @@ const Home: React.FC<HomeIprops> = () => {
   )
 }
 
-module.exports = Home
+export default Home

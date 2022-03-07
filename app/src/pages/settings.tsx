@@ -37,4 +37,4 @@ const Settings: React.FC = () => {
   )
 }
 
-module.exports = Settings
+export default Settings

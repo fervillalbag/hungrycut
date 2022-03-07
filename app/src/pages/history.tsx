@@ -81,4 +81,4 @@ const History: React.FC = () => {
   )
 }
 
-module.exports = History
+export default History

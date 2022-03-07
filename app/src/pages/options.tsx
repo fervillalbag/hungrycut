@@ -48,4 +48,4 @@ const Options: React.FC = () => {
   )
 }
 
-module.exports = Options
+export default Options

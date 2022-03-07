@@ -340,4 +340,4 @@ const Create: React.FC = () => {
   )
 }
 
-module.exports = Create
+export default Create

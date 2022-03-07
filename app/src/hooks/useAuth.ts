@@ -49,4 +49,4 @@ const useAuth = () => {
   }
 }
 
-module.exports = useAuth
+export default useAuth

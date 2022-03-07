@@ -42,4 +42,4 @@ const Modal: React.FC<ModalIprops> = ({
   )
 }
 
-module.exports = Modal
+export default Modal
