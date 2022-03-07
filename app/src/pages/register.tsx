@@ -77,6 +77,8 @@ const Register: React.FC = () => {
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Nombre y apellido"
+              autoComplete="off"
+              autoCapitalize="off"
               value={userData.name}
               onChange={e => setUserData({ ...userData, name: e.target.value })}
             />
@@ -84,6 +86,8 @@ const Register: React.FC = () => {
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Nombre de usuario"
+              autoComplete="off"
+              autoCapitalize="off"
               value={userData.username}
               onChange={e =>
                 setUserData({ ...userData, username: e.target.value })
@@ -93,6 +97,8 @@ const Register: React.FC = () => {
               type="text"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Correo electrónico"
+              autoComplete="off"
+              autoCapitalize="off"
               value={userData.email}
               onChange={e =>
                 setUserData({ ...userData, email: e.target.value })
@@ -102,6 +108,8 @@ const Register: React.FC = () => {
               type="password"
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Contraseña"
+              autoComplete="off"
+              autoCapitalize="off"
               value={userData.password}
               onChange={e =>
                 setUserData({ ...userData, password: e.target.value })
@@ -111,6 +119,8 @@ const Register: React.FC = () => {
               type="password"
               className="w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Confirmar contraseña"
+              autoComplete="off"
+              autoCapitalize="off"
               value={userData.passwordConfirm}
               onChange={e =>
                 setUserData({ ...userData, passwordConfirm: e.target.value })

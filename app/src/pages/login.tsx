@@ -75,6 +75,8 @@ const Login: React.FC = () => {
               className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Correo electrónico"
               value={userData.email}
+              autoComplete="off"
+              autoCapitalize="off"
               onChange={e =>
                 setUserData({ ...userData, email: e.target.value })
               }
@@ -84,6 +86,8 @@ const Login: React.FC = () => {
               className="w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
               placeholder="Contraseña"
               value={userData.password}
+              autoComplete="off"
+              autoCapitalize="off"
               onChange={e =>
                 setUserData({ ...userData, password: e.target.value })
               }
@@ -91,7 +95,7 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-8">
+        <div className="fixed bottom-0 left-[50%] mb-8 w-[calc(100%_-_40px)] translate-x-[-50%]">
           <div className="mb-3 flex justify-center">
             <p className="text-primary">¿Aún no tienes una cuenta? </p>
             <Link href="/register">
