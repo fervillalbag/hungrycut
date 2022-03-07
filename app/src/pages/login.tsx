@@ -58,7 +58,7 @@ const Login: React.FC = () => {
 
       <form
         onSubmit={handleLogin}
-        className="flex h-[calc(100vh_-_82px)] flex-col justify-between px-5 pt-6"
+        className="flex flex-col justify-between px-5 pt-3"
       >
         <div>
           <h3 className="mb-2 text-2xl font-bold text-primary">
@@ -95,7 +95,7 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-[50%] mb-8 w-[calc(100%_-_40px)] translate-x-[-50%]">
+        <div className="my-6">
           <div className="mb-3 flex justify-center">
             <p className="text-primary">¿Aún no tienes una cuenta? </p>
             <Link href="/register">

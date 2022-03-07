@@ -328,7 +328,7 @@ const Create: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-10 mb-4 px-5">
+      <div className="mt-6 mb-4 px-5">
         <button
           className=" block w-full rounded bg-primary py-4 text-lg text-white"
           onClick={handleCreateReport}
