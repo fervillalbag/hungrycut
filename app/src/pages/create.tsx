@@ -138,6 +138,18 @@ const Create: React.FC = () => {
         </div>
       )}
 
+      <div className="mt-3 px-5">
+        <span className="mb-2 block text-lg font-semibold text-primary">
+          Ingrese nombre de la comida
+        </span>
+        <input
+          type="text"
+          className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
+          onChange={e => setNameFood(e.target.value)}
+          value={nameFood || ''}
+        />
+      </div>
+
       <div className="px-5">
         <span className="mb-2 block text-lg font-semibold text-primary">
           Selecciona comida del día
@@ -194,19 +206,7 @@ const Create: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-3 px-5">
-        <span className="mb-2 block text-lg font-semibold text-primary">
-          Ingrese nombre de la comida
-        </span>
-        <input
-          type="text"
-          className="mb-5 w-full rounded border border-slate-200 py-3 px-4 focus:outline-primary"
-          onChange={e => setNameFood(e.target.value)}
-          value={nameFood || ''}
-        />
-      </div>
-
-      <div className="mt-1 px-5">
+      <div className="mt-4 px-5">
         <article className="mb-8">
           <span className="mb-2 block text-lg font-semibold text-primary">
             Proteínas
