@@ -20,4 +20,4 @@ class Document extends NextDocument {
   }
 }
 
-export default Document
+module.exports = Document

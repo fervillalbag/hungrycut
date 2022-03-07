@@ -1,14 +1,14 @@
-import { ApolloServer } from "apollo-server";
-import mongoose, { ConnectOptions } from "mongoose";
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
+const { ApolloServer } = require("apollo-server");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
 
-import typeDefs from "./graphql/schema";
-import resolvers from "./graphql/resolver";
+const typeDefs = require("./graphql/schema");
+const resolvers = require("./graphql/resolver");
 
 dotenv.config({ path: ".env" });
 
-const mongodbUri: any = process.env.MONGODB_URI;
+const mongodbUri = process.env.MONGODB_URI;
 
 const server = new ApolloServer({
   typeDefs,
@@ -20,7 +20,7 @@ const server = new ApolloServer({
       try {
         const user = jwt.verify(
           token.replace("Bearer ", ""),
-          process.env.SECRET_KEY_LOGIN as string
+          process.env.SECRET_KEY_LOGIN
         );
         return {
           user,
@@ -36,14 +36,14 @@ mongoose
   .connect(mongodbUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  } as ConnectOptions)
+  })
   .then(() => {
     console.log("MongoDB Connected");
     return server.listen({ port: process.env.PORT });
   })
-  .then((res: any) => {
+  .then((res) => {
     console.log(`Server is running at: ${res.url}`);
   })
-  .catch((error: any) => {
+  .catch((error) => {
     console.log(error);
   });

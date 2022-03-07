@@ -1,25 +1,16 @@
-import User from "../models/user";
+const User = require("../models/user");
 
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import {
-  CreateUserType,
-  LoginType,
-  RegisterInputType,
-} from "types/User";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-const createToken = (
-  user: CreateUserType,
-  SECRET_KEY: any,
-  expiresIn: any
-) => {
+const createToken = (user, SECRET_KEY, expiresIn) => {
   const { id, name, username, email } = user;
 
   const payload = { id, name, username, email };
   return jwt.sign(payload, SECRET_KEY, { expiresIn });
 };
 
-const register = async (input: RegisterInputType) => {
+const register = async (input) => {
   const newUser = input;
   newUser.email = newUser.email.toLowerCase();
   newUser.username = newUser.username.toLowerCase();
@@ -69,7 +60,7 @@ const register = async (input: RegisterInputType) => {
   }
 };
 
-const login = async (input: LoginType) => {
+const login = async (input) => {
   const { email, password } = input;
 
   const userFound = await User.findOne({
@@ -105,7 +96,7 @@ const getUsers = async () => {
   }
 };
 
-const getUser = async (id: string, username: string) => {
+const getUser = async (id, username) => {
   try {
     let user;
     if (id) user = User.findOne({ _id: id });
@@ -119,7 +110,7 @@ const getUser = async (id: string, username: string) => {
   }
 };
 
-export default {
+module.exports = {
   register,
   login,
   getUsers,

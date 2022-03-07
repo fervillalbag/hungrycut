@@ -139,4 +139,4 @@ const Register: React.FC = () => {
   )
 }
 
-export default Register
+module.exports = Register

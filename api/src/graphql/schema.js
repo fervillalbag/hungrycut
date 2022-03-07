@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const apollo_server_1 = require("apollo-server");
-const typeDefs = (0, apollo_server_1.gql) `
+const { gql } = require("apollo-server");
+
+const typeDefs = gql`
   type User {
     id: String
     name: String
@@ -86,4 +85,5 @@ const typeDefs = (0, apollo_server_1.gql) `
     deleteReport(id: String!): MutationResponse
   }
 `;
-exports.default = typeDefs;
+
+module.exports = typeDefs;

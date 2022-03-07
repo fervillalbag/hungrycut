@@ -1,9 +1,8 @@
-import dayjs from "dayjs";
+const dayjs = require("dayjs");
 
-import { ReportTypeInput } from "types/Report";
-import Report from "../models/report";
+const Report = require("../models/report");
 
-const createReport = async (input: ReportTypeInput, ctx: any) => {
+const createReport = async (input, ctx) => {
   const {
     name,
     type,
@@ -44,7 +43,7 @@ const createReport = async (input: ReportTypeInput, ctx: any) => {
   }
 };
 
-const updateReport = async (input: ReportTypeInput, id: string) => {
+const updateReport = async (input, id) => {
   try {
     await Report.findOneAndUpdate({ _id: id }, input);
 
@@ -61,7 +60,7 @@ const updateReport = async (input: ReportTypeInput, id: string) => {
   }
 };
 
-const deleteReport = async (id: string) => {
+const deleteReport = async (id) => {
   try {
     await Report.findOneAndDelete({ _id: id });
 
@@ -78,7 +77,7 @@ const deleteReport = async (id: string) => {
   }
 };
 
-const getReports = async (idUser: string, date: string) => {
+const getReports = async (idUser, date) => {
   try {
     console.log(
       dayjs(Number(date)).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
@@ -104,7 +103,7 @@ const getReports = async (idUser: string, date: string) => {
   }
 };
 
-const getReport = async (id: string) => {
+const getReport = async (id) => {
   try {
     const report = await Report.findOne({ _id: id });
     return report;
@@ -114,7 +113,7 @@ const getReport = async (id: string) => {
   }
 };
 
-export default {
+module.exports = {
   createReport,
   updateReport,
   deleteReport,

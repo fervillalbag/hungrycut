@@ -97,4 +97,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+module.exports = Navbar

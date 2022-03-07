@@ -111,4 +111,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+module.exports = Login

@@ -123,4 +123,4 @@ const CardReport: React.FC<CardReportIprops> = ({ report }) => {
   )
 }
 
-export default CardReport
+module.exports = CardReport

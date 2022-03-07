@@ -26,4 +26,4 @@ const UserProfile: React.FC = () => {
   )
 }
 
-export default UserProfile
+module.exports = UserProfile
