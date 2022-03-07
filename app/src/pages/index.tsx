@@ -9,6 +9,7 @@ import useAuth from '@/hooks/useAuth'
 import dayjs from 'dayjs'
 import { isAuth, isUserNotFound } from '@/utils/actions'
 import { getToken } from '@/utils/helpers'
+import CardLoading from '@/components/CardLoading'
 
 interface HomeIprops {
   reports: ReportType[]
@@ -102,7 +103,7 @@ const Home: React.FC<HomeIprops> = () => {
 
       <div className="mt-3 px-5">
         {loading ? (
-          <span className="block text-center">Cargando..</span>
+          <CardLoading />
         ) : reportsSorted.length === 0 ? (
           <div className="flex h-[calc(100vh_-_275px)] items-center justify-center">
             <span className="block">No hay reportes generados</span>

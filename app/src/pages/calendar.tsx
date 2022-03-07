@@ -14,6 +14,7 @@ import Modal from '@/components/Modal'
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css'
 import { getToken } from '@/utils/helpers'
 import { isAuth, isUserNotFound } from '@/utils/actions'
+import CardLoading from '@/components/CardLoading'
 
 const CalendarPage: React.FC = () => {
   isUserNotFound()
@@ -88,7 +89,7 @@ const CalendarPage: React.FC = () => {
       >
         <div className="mt-6">
           {loading ? (
-            <span className="block py-28 text-center">Cargando..</span>
+            <CardLoading />
           ) : reports?.getReports.length === 0 ? (
             <div className="flex items-center justify-center py-28">
               <span className="block">No hay reportes generados</span>

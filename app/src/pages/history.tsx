@@ -9,6 +9,7 @@ import { ReportType } from '@/types/Report'
 import { FaAngleLeft } from 'react-icons/fa'
 import { getToken } from '@/utils/helpers'
 import { isAuth, isUserNotFound } from '@/utils/actions'
+import CardLoading from '@/components/CardLoading'
 
 const History: React.FC = () => {
   isUserNotFound()
@@ -64,7 +65,7 @@ const History: React.FC = () => {
 
       <div className="mt-1 px-5">
         {loading ? (
-          <span className="block text-center">Cargando..</span>
+          <CardLoading />
         ) : reportsSorted.length === 0 ? (
           <div className="flex h-[calc(100vh_-_275px)] items-center justify-center">
             <span className="block">No hay reportes generados</span>
