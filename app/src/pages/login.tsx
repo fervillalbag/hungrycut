@@ -95,11 +95,11 @@ const Login: React.FC = () => {
           </div>
         </div>
 
-        <div className="my-6">
-          <div className="mb-3 flex justify-center">
-            <p className="text-primary">¿Aún no tienes una cuenta? </p>
+        <div className="my-4">
+          <div className="mb-4 flex items-center justify-center">
+            <p className="text-sm text-primary">¿Aún no tienes una cuenta? </p>
             <Link href="/register">
-              <a className="ml-1 block font-semibold">Regístrate</a>
+              <a className="ml-1 block text-sm font-semibold">Regístrate</a>
             </Link>
           </div>
 

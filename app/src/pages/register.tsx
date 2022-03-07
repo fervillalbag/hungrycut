@@ -129,11 +129,11 @@ const Register: React.FC = () => {
           </div>
         </div>
 
-        <div className="my-8">
-          <div className="mb-3 flex justify-center">
-            <p className="password-primary">¿Ya tienes una cuenta? </p>
+        <div className="my-6">
+          <div className="mb-4 flex justify-center">
+            <p className="password-primary text-sm">¿Ya tienes una cuenta? </p>
             <Link href="/login">
-              <a className="ml-1 block font-semibold">Inicia sesión</a>
+              <a className="ml-1 block text-sm font-semibold">Inicia sesión</a>
             </Link>
           </div>
 
