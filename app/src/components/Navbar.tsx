@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
           <HiHome />
         </a>
       </Link>
-      <Link href="/">
+      <Link href="/search">
         <a
           className={`block text-2xl text-primary ${
             router.pathname === '/search' ? 'text-primary' : 'text-slate-300'

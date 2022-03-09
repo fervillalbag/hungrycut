@@ -4,12 +4,12 @@ import { CgSoftwareUpload } from 'react-icons/cg'
 import { IoStar, IoStarOutline } from 'react-icons/io5'
 import { useRouter } from 'next/router'
 
-import Layout from '@/components/Layout'
 import { FileType } from '@/types/File'
 import { useMutation } from '@apollo/client'
 import { CREATE_REPORT } from '@/graphql/mutations/report'
 import { getToken } from '@/utils/helpers'
 import { isAuth, isUserNotFound } from '@/utils/actions'
+import { FaAngleLeft } from 'react-icons/fa'
 
 const Create: React.FC = () => {
   isUserNotFound()
@@ -98,9 +98,16 @@ const Create: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <header className="p-5">
-        <span className="block text-xl font-semibold text-primary">
+    <div>
+      <header className="flex items-center p-5">
+        <button
+          className="rounded border border-slate-200 bg-white p-3 text-xl"
+          onClick={() => router.back()}
+        >
+          <FaAngleLeft />
+        </button>
+
+        <span className="ml-4 block text-xl font-semibold text-primary">
           Crear reporte
         </span>
       </header>
@@ -328,7 +335,7 @@ const Create: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-6 mb-4 px-5">
+      <div className="mt-6 mb-10 px-5">
         <button
           className=" block w-full rounded bg-primary py-4 text-lg text-white"
           onClick={handleCreateReport}
@@ -336,7 +343,7 @@ const Create: React.FC = () => {
           Generar reporte
         </button>
       </div>
-    </Layout>
+    </div>
   )
 }
 
