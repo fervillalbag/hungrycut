@@ -55,7 +55,7 @@ const Register: React.FC = () => {
 
   return (
     <div>
-      <div className="m-5 flex">
+      <div className="mx-auto flex max-w-xl p-5">
         <button
           className="flex items-center justify-center rounded border border-slate-300 py-2 px-3 text-2xl text-primary"
           onClick={() => router.back()}
@@ -64,7 +64,7 @@ const Register: React.FC = () => {
         </button>
       </div>
 
-      <form onSubmit={handleRegister} className="px-5 pt-3">
+      <form onSubmit={handleRegister} className="mx-auto max-w-xl px-5 pt-3">
         <div>
           <h3 className="mb-2 text-2xl font-bold text-primary">Regístrate</h3>
 

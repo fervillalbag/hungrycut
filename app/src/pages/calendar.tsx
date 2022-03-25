@@ -55,7 +55,7 @@ const CalendarPage: React.FC = () => {
   })
 
   return (
-    <div className="bg-slate-50">
+    <div className="mx-auto max-w-xl bg-slate-50">
       <header className="flex items-center p-5">
         <button
           className="rounded border border-slate-200 bg-white p-3 text-xl"

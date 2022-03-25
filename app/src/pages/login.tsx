@@ -46,7 +46,7 @@ const Login: React.FC = () => {
   }
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="mx-auto h-screen max-w-xl overflow-hidden">
       <div className="m-5 flex">
         <button
           className="flex items-center justify-center rounded border border-slate-300 py-2 px-3 text-2xl text-primary"

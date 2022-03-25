@@ -8,7 +8,7 @@ const Settings: React.FC = () => {
   const { logout } = useAuth()
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="mx-auto min-h-screen max-w-xl bg-slate-50">
       <header className="flex items-center p-5">
         <button
           className="rounded border border-slate-200 bg-white p-3 text-xl"
